@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  highlights: string[];
+}
+
+const { title, description, highlights } = Astro.props;
+---
+
+<article class="service-card">
+  <h3>{title}</h3>
+  <p class="card-desc">{description}</p>
+  <ul class="card-list">
+    {highlights.map((item) => <li>{item}</li>)}
+  </ul>
+</article>
+
+<style>
+  .service-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--color-text);
+  }
+
+  .card-desc {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .card-list {
+    margin: 0.25rem 0 0;
+    padding-left: 1.15rem;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+</style>

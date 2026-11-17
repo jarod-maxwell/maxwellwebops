@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = 'https://maxwellwebops.com';
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Maxwell Web Ops',
+  url: siteUrl,
+  founder: {
+    '@type': 'Person',
+    name: 'Jarod Maxwell',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Fort Wayne',
+    containedInPlace: {
+      '@type': 'State',
+      name: 'Indiana',
+    },
+  },
+  description:
+    'Web hosting, domain administration, Google Workspace setup, local directory management, and data hygiene for small businesses in Fort Wayne, Indiana.',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Maxwell Web Ops" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- LocalBusiness / ProfessionalService Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>

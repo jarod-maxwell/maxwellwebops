@@ -1,0 +1,368 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const serviceDetails = [
+  {
+    id: 'hosting-domains',
+    title: 'Web Hosting, Domains & DNS Administration',
+    summary:
+      'Reliable infrastructure and clean domain governance so your business never loses access to its web presence or suffers avoidable downtime.',
+    deliverables: [
+      'Domain registrar consolidation, renewal tracking, and ownership verification',
+      'DNS record cleanup (A, CNAME, MX, TXT) with Cloudflare edge security',
+      'High-speed static website builds, migrations, and SSL certificate management',
+      'Routine content updates, uptime checks, and broken-link audits',
+    ],
+    idealFor:
+      'Businesses tired of slow shared hosting, expiring domains, or not knowing which vendor holds their login credentials.',
+  },
+  {
+    id: 'google-workspace',
+    title: 'Google Workspace & Email Deliverability',
+    summary:
+      'Properly authenticated business email on your own domain so quotes, invoices, and client replies reach the primary inbox.',
+    deliverables: [
+      'Google Workspace provisioning and custom @yourbusiness.com address setup',
+      'SPF, DKIM, and DMARC authentication to prevent spoofing and spam filtering',
+      'Team user onboarding, role-based email aliases (info@, billing@), and offboarding',
+      'Organized Google Drive folder structures and permission hygiene',
+    ],
+    idealFor:
+      'Teams still using free @gmail.com addresses or experiencing outbound emails landing in customers’ spam folders.',
+  },
+  {
+    id: 'local-directories',
+    title: 'Local Directory & Google Business Profile Management',
+    summary:
+      'Accurate, consistent business data across search engines and local directories so Fort Wayne customers find verified hours, locations, and services.',
+    deliverables: [
+      'Google Business Profile claiming, verification, category tuning, and service lists',
+      'Name, Address, and Phone (NAP) consistency audits across core local directories',
+      'Structured LocalBusiness JSON-LD schema markup for clearer search indexing',
+      'Seasonal hours updates, service-area definitions, and photo organization',
+    ],
+    idealFor:
+      'Local service providers, storefronts, and offices that have moved, changed phone numbers, or noticed outdated hours online.',
+  },
+  {
+    id: 'data-hygiene-lead-capture',
+    title: 'Data Hygiene & Smart Lead Capture',
+    summary:
+      'Streamlined website intake forms and structured contact records that route customer inquiries cleanly without manual copy-paste.',
+    deliverables: [
+      'Focused contact, quote, and service-request forms built for fast completion',
+      'Automated routing into Google Sheets, email notifications, or existing CRMs',
+      'Deduplication, formatting standardization, and tagging of existing contact lists',
+      'Clear metadata and taxonomy organization for internal files and web assets',
+    ],
+    idealFor:
+      'Owner-operators losing leads in cluttered inboxes or struggling with messy spreadsheets and inconsistent customer records.',
+  },
+];
+
+const engagementModels = [
+  {
+    name: 'Baseline Audit & Cleanup',
+    scope: 'One-time diagnostic and remediation',
+    description:
+      'A full review of your domain registrar, DNS records, website performance, email authentication (SPF/DKIM/DMARC), and Google Business Profile—followed by hands-on cleanup and a plain-English handoff report.',
+  },
+  {
+    name: 'Website Build or Migration',
+    scope: 'Fixed-scope project',
+    description:
+      'A fast, accessible, search-ready static website built from scratch or migrated off bloated legacy platforms, complete with local schema markup and clean lead-capture forms.',
+  },
+  {
+    name: 'Ongoing Web Ops Retainer',
+    scope: 'Monthly stewardship',
+    description:
+      'Continuous hosting management, domain and SSL monitoring, routine content and hours updates, directory maintenance, and priority technical support whenever something needs attention.',
+  },
+];
+---
+
+<BaseLayout
+  title="Services | Maxwell Web Ops — Fort Wayne Web & Digital Infrastructure"
+  description="Detailed web hosting, DNS administration, Google Workspace email setup, local directory management, and data hygiene services for Fort Wayne small businesses."
+>
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">Services</p>
+        <h1>Practical web operations for small business teams.</h1>
+        <p class="page-lead">
+          Every engagement focuses on stability, clear ownership, and clean data—giving you dependable digital infrastructure without unnecessary software subscriptions or agency retainers.
+        </p>
+      </div>
+    </section>
+
+    <!-- Detailed Service Breakdown -->
+    <section class="section">
+      <div class="container service-stack">
+        {
+          serviceDetails.map((service) => (
+            <article id={service.id} class="service-detail-card">
+              <div class="service-main">
+                <h2>{service.title}</h2>
+                <p class="service-summary">{service.summary}</p>
+                <p class="service-fit">
+                  <strong>Best fit:</strong> {service.idealFor}
+                </p>
+              </div>
+
+              <div class="service-deliverables">
+                <h3>What’s Included</h3>
+                <ul>
+                  {service.deliverables.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- How Engagements Are Structured -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Ways to Work Together</h2>
+          <p>
+            Start with a single cleanup project or set up ongoing operational support—with clear, fixed-scope pricing agreed upon before work begins.
+          </p>
+        </div>
+
+        <div class="models-grid">
+          {
+            engagementModels.map((model) => (
+              <div class="model-card">
+                <p class="model-scope">{model.scope}</p>
+                <h3>{model.name}</h3>
+                <p>{model.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Need help sorting out your current setup?</h2>
+            <p>
+              Send over your website URL or tell me what’s giving you trouble—I’ll review the basics and outline clear next steps.
+            </p>
+          </div>
+          <a href="/contact" class="btn btn-primary">Request a Review</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 3.5rem 4rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    max-width: 44rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-lead {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 42rem;
+  }
+
+  .section {
+    padding-block: 4rem;
+  }
+
+  .section-alt {
+    background-color: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .service-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .service-detail-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .service-main h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-summary {
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem;
+  }
+
+  .service-fit {
+    margin: 0;
+    padding: 0.875rem 1rem;
+    background-color: var(--color-bg);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 0 0.375rem 0.375rem 0;
+    font-size: 0.925rem;
+  }
+
+  .service-deliverables h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    margin: 0 0 0.75rem;
+  }
+
+  .service-deliverables ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+  }
+
+  .section-header {
+    max-width: 42rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .model-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .model-scope {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin: 0 0 0.4rem;
+  }
+
+  .model-card h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.65rem;
+  }
+
+  .model-card p:last-child {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .cta-box {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .cta-box h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .cta-box p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+  }
+
+  @media (max-width: 52rem) {
+    .service-detail-card {
+      grid-template-columns: 1fr;
+    }
+
+    .models-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

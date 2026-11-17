@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    title: 'Web Hosting & Domain Administration',
+    description:
+      'Fast, dependable static hosting, SSL certificates, and clean DNS management so your website stays online and secure.',
+    highlights: [
+      'Domain registration, renewals, and DNS record cleanup',
+      'High-speed edge hosting on Cloudflare infrastructure',
+      'Ongoing uptime monitoring and content updates',
+    ],
+  },
+  {
+    title: 'Google Workspace & Email Deliverability',
+    description:
+      'Professional business email setup and authentication so your messages land in client inboxes instead of spam folders.',
+    highlights: [
+      'Custom @yourbusiness.com Google Workspace setup',
+      'SPF, DKIM, and DMARC security configuration',
+      'User onboarding, aliases, and shared drive structure',
+    ],
+  },
+  {
+    title: 'Local Directory & Google Business Profile',
+    description:
+      'Accurate business listings across local search platforms so Fort Wayne customers find the right hours, phone number, and services.',
+    highlights: [
+      'Google Business Profile setup, verification, and tuning',
+      'Name, address, and phone (NAP) consistency audits',
+      'Structured local schema markup for search visibility',
+    ],
+  },
+  {
+    title: 'Data Hygiene & Smart Lead Capture',
+    description:
+      'Clean intake forms and organized customer records that route inquiries straight to your team without manual copy-paste.',
+    highlights: [
+      'Friction-free contact and quote request workflows',
+      'Structured tagging and spreadsheet/CRM routing',
+      'Cleanup of messy customer lists and metadata',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Maxwell Web Ops | Web Operations & Digital Infrastructure in Fort Wayne, IN"
+  description="Reliable website hosting, domain administration, Google Workspace configuration, and local directory management for Fort Wayne small businesses."
+>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Fort Wayne &amp; Northeast Indiana</p>
+        <h1>Dependable web operations for local small businesses.</h1>
+        <p class="hero-lead">
+          Your website, business email, and local listings should run quietly in the background—not eat up your week. Maxwell Web Ops handles your hosting, domains, Google Workspace, and lead intake with clear, practical support.
+        </p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn btn-primary">Schedule a Website Checkup</a>
+          <a href="/services" class="btn btn-secondary">Explore Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Services Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Core Operations Services</h2>
+          <p>
+            Focused technical management built for small teams that want reliable infrastructure without agency overhead.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          {
+            services.map((service) => (
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                highlights={service.highlights}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Operating Principles -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>How Maxwell Web Ops Works</h2>
+          <p>Straightforward technical stewardship with zero lock-in.</p>
+        </div>
+
+        <div class="principles-grid">
+          <div class="principle">
+            <h3>You Own Every Account</h3>
+            <p>
+              Your domain registrar, hosting, and Google Workspace stay registered in your business's name—never held hostage by a vendor.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Plain-English Communication</h3>
+            <p>
+              No jargon or bloated slide decks. You get clear answers on what is broken, what it costs to fix, and how it helps your business.
+            </p>
+          </div>
+          <div class="principle">
+            <h3>Local Fort Wayne Accountability</h3>
+            <p>
+              Work directly with the operator managing your systems, right here in Fort Wayne, Indiana.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Not sure who controls your domain or DNS?</h2>
+            <p>
+              Let's run a quick baseline audit of your website speed, email authentication, and Google Business Profile.
+            </p>
+          </div>
+          <a href="/contact" class="btn btn-primary">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 4rem 4.5rem;
+  }
+
+  .hero-inner {
+    max-width: 48rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin: 0 0 2rem;
+    max-width: 42rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+  }
+
+  .section {
+    padding-block: 4rem;
+  }
+
+  .section-alt {
+    background-color: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .section-header {
+    max-width: 40rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 44rem) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 48rem) {
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .principle h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .principle p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .cta-box {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .cta-box h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .cta-box p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+</style>

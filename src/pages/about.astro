@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const standards = [
+  {
+    title: 'Client Ownership First',
+    description:
+      'Domains, DNS zones, hosting accounts, and Google Workspace tenants are set up under your business’s direct ownership—never locked inside a proprietary vendor account.',
+  },
+  {
+    title: 'Structured, Clean Infrastructure',
+    description:
+      'Every project is built around organized metadata, documented DNS records, semantic HTML, and clean folder structures so systems remain easy to audit and maintain.',
+  },
+  {
+    title: 'Right-Sized Technology',
+    description:
+      'Small businesses rarely need complex, fragile software stacks. Fast static web architecture and properly configured core tools cost less to run and break far less often.',
+  },
+];
+---
+
+<BaseLayout
+  title="About | Maxwell Web Ops — Fort Wayne Web Operations"
+  description="Learn about Maxwell Web Ops and founder Jarod Maxwell—providing dependable web hosting, domain administration, and digital infrastructure for Fort Wayne small businesses."
+>
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">About Maxwell Web Ops</p>
+        <h1>Built for small businesses that want their web infrastructure handled right.</h1>
+        <p class="page-lead">
+          Maxwell Web Ops is a Fort Wayne digital operations practice focused on the foundational systems that keep a small business visible, reachable, and organized online.
+        </p>
+      </div>
+    </section>
+
+    <!-- Operator Background -->
+    <section class="section">
+      <div class="container bio-grid">
+        <div class="bio-main">
+          <h2>Background &amp; Approach</h2>
+          <p>
+            Hi, I’m <strong>Jarod Maxwell</strong>, founder of Maxwell Web Ops. I earned my Bachelor of Science in Informatics from Indiana University Bloomington, focusing on web design, development, and information architecture.
+          </p>
+          <p>
+            Before starting Maxwell Web Ops, I managed website content, hosting infrastructure, and automated reporting across dozens of client websites—and worked directly inside local retail and service operations in Fort Wayne. That combination shaped how I run this practice: technical systems should be fast, well-documented, and practical for the people actually running the business day to day.
+          </p>
+          <p>
+            Most small business owners don’t need a bloated marketing agency or an expensive, over-engineered website. They need someone reliable to make sure their domain doesn’t expire, their website loads quickly on every phone, their business emails don’t land in spam, and their local listings reflect accurate hours and services.
+          </p>
+        </div>
+
+        <aside class="bio-sidebar" aria-label="Practice overview">
+          <div class="sidebar-card">
+            <h3>Practice Snapshot</h3>
+            <dl class="snapshot-list">
+              <div>
+                <dt>Operator</dt>
+                <dd>Jarod Maxwell</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd>Fort Wayne, Indiana</dd>
+              </div>
+              <div>
+                <dt>Service Area</dt>
+                <dd>Fort Wayne &amp; Northeast Indiana</dd>
+              </div>
+              <div>
+                <dt>Core Focus</dt>
+                <dd>Hosting, Domains/DNS, Google Workspace, Local Search &amp; Data Hygiene</dd>
+              </div>
+              <div>
+                <dt>Education</dt>
+                <dd>B.S. in Informatics, Indiana University</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Operating Standards -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Operating Standards</h2>
+          <p>The principles behind every audit, build, and maintenance plan.</p>
+        </div>
+
+        <div class="standards-grid">
+          {
+            standards.map((item) => (
+              <div class="standard-card">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Want a direct look at your current setup?</h2>
+            <p>
+              Reach out with your website address or a quick summary of what you need help managing.
+            </p>
+          </div>
+          <a href="/contact" class="btn btn-primary">Contact Maxwell Web Ops</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 3.5rem 4rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    max-width: 46rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-lead {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 42rem;
+  }
+
+  .section {
+    padding-block: 4rem;
+  }
+
+  .section-alt {
+    background-color: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .bio-main h2 {
+    font-size: 1.65rem;
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .bio-main p {
+    margin: 0 0 1.15rem;
+    color: var(--color-text);
+  }
+
+  .bio-main p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sidebar-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .sidebar-card h3 {
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .snapshot-list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .snapshot-list dt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.15rem;
+  }
+
+  .snapshot-list dd {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .section-header {
+    max-width: 40rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .standards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .standard-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .standard-card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .cta-box {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .cta-box h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .cta-box p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+  }
+
+  @media (max-width: 52rem) {
+    .bio-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .standards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
