@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Inquiry Received | Maxwell Web Ops"
+  description="Thank you for contacting Maxwell Web Ops. Your message has been received and will be reviewed within one business day."
+  noindex={true}
+>
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">Inquiry Received</p>
+        <h1>Thanks for reaching out.</h1>
+        <p class="page-lead">
+          Your message is in my inbox. I review every inquiry personally and will follow up within one business day.
+        </p>
+      </div>
+    </section>
+
+    <!-- Next Steps & Navigation -->
+    <section class="section">
+      <div class="container thanks-grid">
+        <div class="info-card">
+          <h2>What Happens Next</h2>
+          <ol class="steps-list">
+            <li>
+              <strong>Initial Review:</strong> If you shared a website address, I’ll run a quick check on your public DNS, SSL certificate, page speed, and local listing basics before replying.
+            </li>
+            <li>
+              <strong>Plain-English Reply:</strong> You’ll hear back from <code>jarod@maxwellwebops.com</code> within one business day with initial observations or next steps.
+            </li>
+            <li>
+              <strong>Clear Scope Upfront:</strong> Every audit, cleanup, or ongoing management plan comes with straightforward, fixed-scope pricing before any work begins.
+            </li>
+          </ol>
+
+          <div class="thanks-actions">
+            <!-- Step 2: We will add the Cal.com discovery call / checkup button here -->
+            <a href="/" class="btn btn-primary">Return to Home</a>
+            <a href="/services" class="btn btn-secondary">Review Services</a>
+          </div>
+        </div>
+
+        <aside class="info-card" aria-label="Operating hours and location">
+          <h2>Operating Details</h2>
+          <dl class="details-list">
+            <div>
+              <dt>Operator</dt>
+              <dd>Jarod Maxwell</dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>Fort Wayne, Indiana</dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>Monday – Friday, 9:00 AM – 5:00 PM EST</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 3.5rem 4rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    max-width: 44rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-lead {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 42rem;
+  }
+
+  .section {
+    padding-block: 4rem;
+  }
+
+  .thanks-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .info-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+  }
+
+  .info-card h2 {
+    font-size: 1.15rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .steps-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .steps-list strong {
+    color: var(--color-text);
+  }
+
+  .steps-list code {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .thanks-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+  }
+
+  .details-list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .details-list dt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.15rem;
+  }
+
+  .details-list dd {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 52rem) {
+    .thanks-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

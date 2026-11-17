@@ -7,12 +7,14 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description,
   canonicalPath = Astro.url.pathname,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://maxwellwebops.com';
@@ -47,6 +49,7 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->

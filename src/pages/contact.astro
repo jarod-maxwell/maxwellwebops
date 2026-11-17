@@ -26,10 +26,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           action="https://api.web3forms.com/submit"
           method="POST"
         >
-          <!-- Replace YOUR_WEB3FORMS_ACCESS_KEY with your key from web3forms.com -->
           <input type="hidden" name="access_key" value="a2c0319c-9dd8-43c2-9c3d-02e1d4de01a7" />
           <input type="hidden" name="subject" value="New Inquiry — Maxwell Web Ops" />
           <input type="hidden" name="from_name" value="Maxwell Web Ops Website" />
+          <input type="hidden" name="redirect" value="https://maxwellwebops.com/thanks" />
           <!-- Honeypot spam protection -->
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
