@@ -110,6 +110,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <aside class="contact-sidebar" aria-label="Direct contact details">
           <div class="info-card">
+            <h2>Book a 20-Minute Intro Call</h2>
+            <p class="card-copy">
+              Prefer to talk through your website, domain, or Google Workspace setup live? Pick a 20-minute slot directly on my calendar.
+            </p>
+            <a
+              href="https://cal.com/jarod-maxwell/20-min"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary btn-full"
+            >
+              Schedule on Cal.com
+            </a>
+          </div>
+          <div class="info-card">
             <h2>What Happens Next</h2>
             <ol class="steps-list">
               <li>
@@ -339,5 +353,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .form-row {
       grid-template-columns: 1fr;
     }
+  }
+
+  .card-copy {
+    margin: 0 0 1.15rem;
+    font-size: 0.925rem;
+    color: var(--color-text-muted);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+  }
+
+  .btn-full {
+    width: 100%;
+    align-self: stretch;
   }
 </style>
