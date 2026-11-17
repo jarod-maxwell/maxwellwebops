@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# project context file
+project-context.md
+
+# Editor / Workspace
+.vscode/
+*.code-workspace

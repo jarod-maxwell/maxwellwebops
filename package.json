@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "context": "rm -f project-context.md && for f in AGENTS.md astro.config.mjs package.json src/layouts/*.astro src/styles/*.css src/pages/*.astro; do [ -f \"$f\" ] && printf '## File: %s\\n\\n```\\n' \"$f\" && cat \"$f\" && printf '\\n```\\n\\n'; done > project-context.md"
   },
   "dependencies": {
     "astro": "^7.4.12"
