@@ -1,53 +1,39 @@
-## Development
+# AGENTS.md — Maxwell Web Ops
 
-When starting the dev server, use background mode:
+## Project Overview
+- **Business Name:** Maxwell Web Ops
+- **Operator:** Jarod Maxwell
+- **Location:** Fort Wayne, Indiana (serving Fort Wayne & Northeast Indiana)
+- **Production URL:** `https://maxwellwebops.com`
+- **Repository:** `github.com/jarod-maxwell/maxwellwebops` (branch: `main`)
 
-```
-astro dev --background
-```
+## Architecture & Infrastructure
+- **Framework:** Astro (Static Site Generation / SSG)
+- **Hosting & CI/CD:** Cloudflare Pages (`npm run build` -> `dist/`), auto-deploying on push to `main`
+- **Registrar & DNS:** Registered at Namecheap; nameservers delegated to Cloudflare
+- **Canonical Routing:**
+  - `https://maxwellwebops.com` serves the primary site via Cloudflare Pages custom domain
+  - `www.maxwellwebops.com` has a proxied `A` record (`192.0.2.1`) with a Cloudflare 301 Redirect Rule (`concat("https://maxwellwebops.com", http.request.uri.path)`)
+- **Email & Authentication:**
+  - Google Workspace Business Standard (`jarod@maxwellwebops.com`)
+  - MX routed to `smtp.google.com`; SPF (`v=spf1 include:_spf.google.com ~all`), 2048-bit DKIM (`google._domainkey`), and DMARC (`v=DMARC1; p=none; rua=mailto:jarod@maxwellwebops.com`) configured and passing
+- **Contact Form:** Web3Forms HTML endpoint in `src/pages/contact.astro` (using honeypot field `botcheck`)
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
-
-## Documentation
-
-Full documentation: https://docs.astro.build
-
-Consult these guides before working on related tasks:
-
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
-
-## Business & Brand Positioning
-
-- **Brand:** Maxwell Web Ops (`maxwellwebops.com`)
-- **Founder / Operator:** Jarod Maxwell
-- **Location:** Fort Wayne, Indiana (serving Fort Wayne and Northeast Indiana small businesses)
-- **Core Services:**
-  1. Small business web hosting, domain administration, and DNS management
-  2. Google Workspace administration and email deliverability (SPF, DKIM, DMARC)
-  3. Local directory management and Google Business Profile optimization
-  4. Data hygiene, metadata/taxonomy structuring, and smart lead capture workflows
-- **Tone & Voice:** Direct, practical, calm, and technically credible. Avoid agency buzzwords ("synergy", "10x", "disruptive", "revolutionary"). Explain technical value in plain English for local business owners.
-
-## Tech Stack & Architecture
-
-- **Framework:** Astro (static output by default; zero client-side JS unless explicitly justified)
-- **Hosting:** Cloudflare Pages (`npm run build` -> `dist/`)
-- **Styling:** Semantic HTML5 + vanilla CSS with CSS custom properties (`src/styles/global.css`) and component-scoped `<style>` blocks. Do not add Tailwind or heavy CSS frameworks unless explicitly requested.
+## Codebase Conventions
+- **Styling:** Semantic HTML5 and scoped Astro `<style>` blocks backed by global CSS custom properties in `src/styles/global.css`. Do NOT introduce Tailwind CSS, Bootstrap, or client-side JS frameworks (React/Vue/Svelte) unless explicitly requested.
 - **Directory Structure:**
-  - `src/layouts/` — Page wrappers (`BaseLayout.astro`)
-  - `src/components/` — Reusable UI components (`Navbar.astro`, `Footer.astro`, `ServiceCard.astro`)
-  - `src/pages/` — File-based routes
-  - `src/styles/` — Global design tokens and base resets
-  - `public/` — Static assets (`favicon.svg`, `robots.txt`, Open Graph images)
+  - `src/layouts/BaseLayout.astro`: Global HTML shell, `<head>` metadata, JSON-LD `LocalBusiness` schema, sticky header/footer wrapper
+  - `src/components/`: Reusable UI modules (`Navbar.astro`, `Footer.astro`, `ServiceCard.astro`)
+  - `src/pages/`:
+    - `index.astro` — Hero, 2×2 `ServiceCard` grid, 3-column operating principles, bottom CTA
+    - `services.astro` — Detailed service breakdowns with anchor `#id`s + 3 engagement models
+    - `about.astro` — Founder background, Practice Snapshot sidebar, 3 operating standards
+    - `contact.astro` — Structured intake form + "What Happens Next" sidebar
+- **Layout Breakpoints:**
+  - 4-card service grid uses a 2×2 layout (`repeat(2, minmax(0, 1fr))`), collapsing to 1 column at `max-width: 44rem`
+  - 3-column principles/standards grids use `repeat(3, minmax(0, 1fr))`, collapsing to 1 column at `max-width: 48rem` / `52rem`
 
-## Code, SEO & Accessibility Standards
-
-- **HTML & Accessibility:** Use strict semantic landmarks (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`), proper heading hierarchy (one `<h1>` per page), descriptive `alt` text, and high-contrast, keyboard-accessible focus states.
-- **Structured Data:** Every page using `BaseLayout.astro` must include valid JSON-LD schema (`LocalBusiness` / `ProfessionalService`) in the `<head>` and complete `<title>`, `<meta name="description">`, canonical URL, and Open Graph tags.
-- **Performance:** Keep pages lightweight, use modern image formats (`webp`/`avif`) with explicit `width` and `height`, and avoid unnecessary third-party scripts or trackers.
-- **Safe Edits:** Keep components small and single-purpose. Do not modify `BaseLayout.astro` global tokens or schema blocks when making localized page-copy updates.
+## Tone & Copy Guidelines
+- Plain-English, practical, non-jargon communication aimed at Fort Wayne small business owners.
+- Emphasize client ownership of domains/accounts, clean data/DNS hygiene, and zero agency bloat.
+- Never reference `jaymax.co` or `jaymaxco` in commits, comments, or copy.
