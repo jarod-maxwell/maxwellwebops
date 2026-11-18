@@ -14,65 +14,105 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="eyebrow">Inquiry Received</p>
         <h1>Thanks for reaching out.</h1>
         <p class="page-lead">
-          Your message is in my inbox. I review every inquiry personally and will follow up within one business day.
+          Your message is in my inbox. I review every inquiry personally and will follow up within one business day—or you can pick a time below if you’d like to talk sooner.
         </p>
       </div>
     </section>
 
-    <!-- Next Steps & Navigation -->
+    <!-- Inline Calendar & Next Steps -->
     <section class="section">
       <div class="container thanks-grid">
-        <div class="info-card">
-          <h2>What Happens Next</h2>
-          <ol class="steps-list">
-            <li>
-              <strong>Initial Review:</strong> If you shared a website address, I’ll run a quick check on your public DNS, SSL certificate, page speed, and local listing basics before replying.
-            </li>
-            <li>
-              <strong>Plain-English Reply (or Book Now):</strong> You’ll hear back from <code>jarod@maxwellwebops.com</code> within one business day—or if you’d like to talk sooner, grab a 20-minute slot on my calendar below.            </li>
-            <li>
-              <strong>Clear Scope Upfront:</strong> Every audit, cleanup, or ongoing management plan comes with straightforward, fixed-scope pricing before any work begins.
-            </li>
-          </ol>
-
-          <div class="thanks-actions">
-            <div class="thanks-actions">
-                <a
-                href="https://cal.com/jarod-maxwell/20-min"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary"
-                >
-                Book a 20-Minute Intro Call
-                </a>
-                <a href="/" class="btn btn-secondary">Return to Home</a>
-            </div>
-            <a href="/" class="btn btn-primary">Return to Home</a>
-            <a href="/services" class="btn btn-secondary">Review Services</a>
-          </div>
+        <div class="info-card embed-card">
+          <h2>Book a 20-Minute Intro Call</h2>
+          <div class="cal-embed-wrap" id="my-cal-inline-thanks"></div>
         </div>
 
-        <aside class="info-card" aria-label="Operating hours and location">
-          <h2>Operating Details</h2>
-          <dl class="details-list">
-            <div>
-              <dt>Operator</dt>
-              <dd>Jarod Maxwell</dd>
-            </div>
-            <div>
-              <dt>Location</dt>
-              <dd>Fort Wayne, Indiana</dd>
-            </div>
-            <div>
-              <dt>Hours</dt>
-              <dd>Monday – Friday, 9:00 AM – 5:00 PM EST</dd>
-            </div>
-          </dl>
+        <aside class="thanks-sidebar" aria-label="Next steps and operating details">
+          <div class="info-card">
+            <h2>What Happens Next</h2>
+            <ol class="steps-list">
+              <li>
+                <strong>Initial Review:</strong> If you shared a website address, I’ll run a quick check on your public DNS, SSL certificate, page speed, and local listing basics before replying.
+              </li>
+              <li>
+                <strong>Plain-English Reply:</strong> You’ll hear back from <code>jarod@maxwellwebops.com</code> within one business day with initial observations or next steps.
+              </li>
+              <li>
+                <strong>Clear Scope Upfront:</strong> Every audit, cleanup, or ongoing management plan comes with straightforward, fixed-scope pricing before any work begins.
+              </li>
+            </ol>
+          </div>
+
+          <div class="info-card">
+            <h2>Operating Details</h2>
+            <dl class="details-list">
+              <div>
+                <dt>Operator</dt>
+                <dd>Jarod Maxwell</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd>Fort Wayne, Indiana</dd>
+              </div>
+              <div>
+                <dt>Hours</dt>
+                <dd>Monday – Friday, 9:00 AM – 5:00 PM EST</dd>
+              </div>
+            </dl>
+          </div>
+
+          <a href="/" class="back-link">&larr; Return to Home</a>
         </aside>
       </div>
     </section>
   </main>
 </BaseLayout>
+
+<script is:inline>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "20-min", { origin: "https://app.cal.com" });
+
+  Cal.ns["20-min"]("inline", {
+    elementOrSelector: "#my-cal-inline-thanks",
+    config: { layout: "month_view", theme: "light" },
+    calLink: "jarod-maxwell/20-min",
+  });
+
+  Cal.ns["20-min"]("ui", {
+    theme: "light",
+    cssVarsPerTheme: {
+      light: { "cal-brand": "#1d4ed8" },
+    },
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
+</script>
 
 <style>
   .page-header {
@@ -117,6 +157,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: start;
   }
 
+  .thanks-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   .info-card {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -129,6 +175,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0 0 1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .cal-embed-wrap {
+    width: 100%;
+    min-height: 460px;
+    overflow: auto;
   }
 
   .steps-list {
@@ -155,48 +207,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border: 1px solid var(--color-border);
   }
 
-  .thanks-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.875rem;
-    margin-top: 1.75rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.35rem;
-    border-radius: var(--radius);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-  }
-
-  .btn-primary {
-    background-color: var(--color-primary);
-    color: #ffffff;
-  }
-
-  .btn-primary:hover {
-    background-color: var(--color-primary-hover);
-    color: #ffffff;
-  }
-
-  .btn-secondary {
-    background-color: var(--color-surface);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--color-text-muted);
-    color: var(--color-text);
-  }
-
   .details-list {
     margin: 0;
     display: flex;
@@ -219,7 +229,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-weight: 500;
   }
 
-  @media (max-width: 52rem) {
+  .back-link {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 56rem) {
     .thanks-grid {
       grid-template-columns: 1fr;
     }

@@ -110,20 +110,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <aside class="contact-sidebar" aria-label="Direct contact details">
           <div class="info-card">
-            <h2>Book a 20-Minute Intro Call</h2>
-            <p class="card-copy">
-              Prefer to talk through your website, domain, or Google Workspace setup live? Pick a 20-minute slot directly on my calendar.
-            </p>
-            <a
-              href="https://cal.com/jarod-maxwell/20-min"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-secondary btn-full"
-            >
-              Schedule on Cal.com
-            </a>
-          </div>
-          <div class="info-card">
             <h2>What Happens Next</h2>
             <ol class="steps-list">
               <li>
@@ -157,9 +143,68 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </aside>
       </div>
+
+      <!-- Inline Cal.com Booking -->
+      <div class="container">
+        <div class="info-card booking-card" id="book">
+          <div class="booking-header">
+            <h2>Or Book a 20-Minute Intro Call Directly</h2>
+            <p>
+              Skip the form and pick a 20-minute time slot on my calendar to talk through your website, domain, or Google Workspace setup.
+            </p>
+          </div>
+          <div class="cal-embed-wrap" id="my-cal-inline-contact"></div>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>
+
+<script is:inline>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "20-min", { origin: "https://app.cal.com" });
+
+  Cal.ns["20-min"]("inline", {
+    elementOrSelector: "#my-cal-inline-contact",
+    config: { layout: "month_view", theme: "light" },
+    calLink: "jarod-maxwell/20-min",
+  });
+
+  Cal.ns["20-min"]("ui", {
+    theme: "light",
+    cssVarsPerTheme: {
+      light: { "cal-brand": "#1d4ed8" },
+    },
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
+</script>
 
 <style>
   .page-header {
@@ -343,6 +388,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-weight: 500;
   }
 
+  .booking-card {
+    margin-top: 2.5rem;
+  }
+
+  .booking-header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .booking-header h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.35rem;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .booking-header p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .cal-embed-wrap {
+    width: 100%;
+    min-height: 460px;
+    overflow: auto;
+  }
+
   @media (max-width: 52rem) {
     .contact-grid {
       grid-template-columns: 1fr;
@@ -353,28 +427,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .form-row {
       grid-template-columns: 1fr;
     }
-  }
-
-  .card-copy {
-    margin: 0 0 1.15rem;
-    font-size: 0.925rem;
-    color: var(--color-text-muted);
-  }
-
-  .btn-secondary {
-    background-color: var(--color-surface);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    text-decoration: none;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--color-text-muted);
-    color: var(--color-text);
-  }
-
-  .btn-full {
-    width: 100%;
-    align-self: stretch;
   }
 </style>
