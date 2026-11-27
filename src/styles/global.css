@@ -69,3 +69,122 @@ a:hover {
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
+
+/* Shared Layout & Sections */
+.section {
+  padding-block: 4rem;
+}
+
+.section-alt {
+  background-color: var(--color-surface);
+  border-block: 1px solid var(--color-border);
+}
+
+.section-header {
+  max-width: 42rem;
+  margin-bottom: 2.25rem;
+}
+
+.section-header h2 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.section-header p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* Sub-page Headers */
+.page-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: 3.5rem 4rem;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  margin: 0 0 0.75rem;
+}
+
+.page-header h1 {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  max-width: 46rem;
+  letter-spacing: -0.02em;
+}
+
+.page-lead {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 42rem;
+}
+
+/* Call-to-Action Box */
+.cta-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cta-box h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+}
+
+.cta-box p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.35rem;
+  border: none;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
