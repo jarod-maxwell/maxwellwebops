@@ -334,6 +334,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-weight: 500;
   }
 
+  /* Inline Cal.com Booking Card */
+  .booking-card {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .booking-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .booking-card .booking-header h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.4rem;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .booking-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    max-width: 44rem;
+    font-size: 0.95rem;
+  }
+
+  .cal-embed-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 460px;
+    overflow-x: hidden;
+  }
+
+  .cal-embed-wrap :global(iframe) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
   @media (max-width: 52rem) {
     .contact-grid {
       grid-template-columns: 1fr;
@@ -343,6 +385,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   @media (max-width: 36rem) {
     .form-row {
       grid-template-columns: 1fr;
+    }
+
+    .contact-form,
+    .booking-card {
+      padding: 1.25rem;
     }
   }
 </style>
