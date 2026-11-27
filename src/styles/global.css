@@ -17,6 +17,18 @@
   --radius: 0.5rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -36,6 +48,12 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 main {

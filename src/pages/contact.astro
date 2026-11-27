@@ -382,14 +382,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
   }
 
-  @media (max-width: 36rem) {
+@media (max-width: 36rem) {
     .form-row {
       grid-template-columns: 1fr;
     }
 
-    .contact-form,
-    .booking-card {
+    .contact-form {
       padding: 1.25rem;
+    }
+
+    .booking-card {
+      padding: 1.25rem 0.5rem;
+    }
+
+    .booking-header {
+      padding-inline: 0.75rem;
     }
   }
 </style>
